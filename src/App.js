@@ -1,16 +1,7 @@
-import './App.css';
 import { useEffect, useState } from 'react';
-import Back from './img/cover.png';
 import SingleCard from './components/SingleCard';
-
-const cardImages = [
-  { src: '/img/helmet-1.png', matched: false },
-  { src: './img/potion-1.png', matched: false },
-  { src: './img/ring-1.png', matched: false },
-  { src: './img/scroll-1.png', matched: false },
-  { src: './img/shield-1.png', matched: false },
-  { src: './img/sword-1.png', matched: false },
-];
+import styled from 'styled-components';
+import cardImages from './data/cardImages';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -69,11 +60,10 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Magic Match</h1>
-      <button onClick={shuffleCards}>New Game</button>
-
-      <div className="card-grid">
+    <EntireBox>
+      <h1>Card Match</h1>
+      <NewGameBtn onClick={shuffleCards}>New Game</NewGameBtn>
+      <CardGrid>
         {cards.map((card) => (
           <SingleCard
             key={card.id}
@@ -83,10 +73,39 @@ function App() {
             disabled={disabled}
           />
         ))}
-      </div>
+      </CardGrid>
       <p>Turns: {turns}</p>
-    </div>
+    </EntireBox>
   );
 }
+
+const EntireBox = styled.div`
+  font-family: 'RocknRoll One', sans-serif;
+  max-width: 860px;
+  margin: 40px auto;
+`;
+
+const NewGameBtn = styled.button`
+  background: none;
+  border: 2px solid #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+
+  :hover {
+    background: #c23866;
+    color: #fff;
+  }
+`;
+
+const CardGrid = styled.div`
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+`;
 
 export default App;
