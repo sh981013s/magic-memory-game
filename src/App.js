@@ -21,7 +21,7 @@ function App() {
     setTurns(0);
   };
 
-  // handling choice
+  // handling  choice
   const handleChoice = (card) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   };
